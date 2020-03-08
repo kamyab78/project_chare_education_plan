@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#76b852"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.first_page">
+
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="267dp"
+        android:background="@android:color/white"
+        android:translationX="70dp"
+        android:translationY="30dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_height="40dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:translationX="90dp"
+        android:background="@color/colorPrimary"
+        android:translationY="250dp"
+        android:text="مشاهده ی آخرین برنامه" />
+
+    <Button
+        android:id="@+id/new_program"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:translationX="90dp"
+        android:background="@color/colorPrimary"
+        android:translationY="400dp"
+        android:text="دریافت برنامه جدید" />
+
+
+</RelativeLayout>
