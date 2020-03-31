@@ -5,15 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class information {
 
-    @SerializedName("token")
-    @Expose
-    private String token;
-    public String getStatus() {
-        return token;
-    }
+//public int id;
+public String reshte;
 
-    public void setStatus(String token) {
-        this.token = token;
-    }
+   public information(String reshte ){
+//       this.id=id;
+       this.reshte=reshte;
+   }
 
 }

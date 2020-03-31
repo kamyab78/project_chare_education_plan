@@ -11,7 +11,7 @@
         android:id="@+id/head"
         android:layout_width="267dp"
         android:background="@android:color/white"
-        android:translationX="70dp"
+        android:translationX="80dp"
         android:translationY="30dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -36,6 +36,15 @@
         android:background="@color/colorPrimary"
         android:translationY="400dp"
         android:text="دریافت برنامه جدید" />
+
+    <Button
+        android:id="@+id/prof"
+        android:layout_width="62dp"
+        android:layout_height="69dp"
+        android:translationX="10dp"
+        android:translationY="10dp"
+        android:background="@drawable/prof"
+        android:text="" />
 
 
 </RelativeLayout>

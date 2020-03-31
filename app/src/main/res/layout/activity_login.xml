@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:background="#76b852"
+        android:layout_height="match_parent"
+    tools:context=".activity.login">
+
+
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#4CAF50"/>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="600dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="354dp"
+                android:layout_height="437dp"
+                android:translationX="30dp"
+                android:translationY="100dp"
+                app:srcCompat="@drawable/first" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="305dp"
+                android:layout_height="49dp"
+                android:background="#f2f2f2"
+                android:ems="10"
+                android:gravity="right"
+                android:inputType="textPersonName"
+                android:hint="نام کاربری"
+                android:translationX="45dp"
+                android:translationY="200dp" />
+
+            <EditText
+                android:id="@+id/pass"
+                android:layout_width="305dp"
+                android:layout_height="49dp"
+                android:background="#f2f2f2"
+                android:translationX="45dp"
+                android:translationY="290dp"
+                android:ems="10"
+                android:gravity="right"
+                android:inputType="textPersonName"
+                android:hint="رمز عبور" />
+
+            <Button
+                android:id="@+id/accept"
+                android:layout_width="237dp"
+                android:layout_height="wrap_content"
+                android:text="تایید"
+                android:translationX="90dp"
+                android:background="#43A047"
+                android:translationY="360dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="270dp"
+                android:translationY="430dp"
+                android:text="ثبت نام نکرده اید؟" />
+
+
+            <TextView
+                android:id="@+id/sabt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:translationY="429dp"
+                android:background="@android:color/white"
+                android:translationX="220dp"
+                android:text="ثبت نام" />
+
+            <TextView
+                android:id="@+id/text_"
+                android:layout_width="185dp"
+                android:layout_height="33dp"
+                android:text=""
+                android:translationX="100dp"
+                android:translationY="500dp"/></RelativeLayout>
+    </ScrollView>

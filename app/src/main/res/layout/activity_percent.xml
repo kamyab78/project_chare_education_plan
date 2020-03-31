@@ -3,16 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#76b852"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#76b852"
+    android:id="@+id/layout"
+    tools:context=".activity.percent">
 
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="83dp"
-        android:layout_height="80dp"
-        android:translationX="170dp"
-        android:translationY="340dp"/>
 </RelativeLayout>
