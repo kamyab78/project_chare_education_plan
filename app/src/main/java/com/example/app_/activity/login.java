@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app_.MainActivity;
 import com.example.app_.R;
@@ -95,4 +97,5 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
 }

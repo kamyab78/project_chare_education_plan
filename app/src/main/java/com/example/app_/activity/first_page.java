@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app_.MainActivity;
 import com.example.app_.R;
@@ -33,6 +35,7 @@ public class first_page extends AppCompatActivity {
     Button prof;
     Button history;
     StringBuffer stringBuffer;
+    long backprestime;
     public static exam[] exams;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,5 +98,23 @@ public class first_page extends AppCompatActivity {
                 });
             }
         });
+    }
+
+int backButtonCount=0;
+    @Override
+    public void onBackPressed()
+    {
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
     }
 }
