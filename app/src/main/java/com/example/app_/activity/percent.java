@@ -17,15 +17,32 @@ import com.example.app_.entity.percent_id;
 import com.example.app_.entity.percent_list;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class percent extends AppCompatActivity {
     RelativeLayout layout;
     EditText editText;
     Button darsad;
     HashMap<String, EditText> percent = new HashMap<>();
-    HashMap<Integer,String>list_darsad=new HashMap<>();
-    public percent_list []percent_lists;
+    HashMap<Integer, String> list_darsad = new HashMap<>();
+    StringBuffer stringBuffer;
+    public List<percent_list> percent_lists;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,20 +65,61 @@ public class percent extends AppCompatActivity {
             public void onClick(View view) {
                 for (int i = 0; i < last_exam.lessons.length; i++) {
                     EditText edit = percent.get(last_exam.lessons[i].lesson.name);
-                    list_darsad.put(last_exam.lessons[i].lesson.id , edit.getText().toString());
+                    list_darsad.put(last_exam.lessons[i].lesson.id, edit.getText().toString());
                     System.out.println(edit.getText().toString());
                 }
-                percent_lists=new percent_list[1];
-
-                percent_lists[0].exam=last_exam.id;
-
-                for (int i=0;i<last_exam.lessons.length;i++){
-                    percent_lists[i].lesson=new percent_id(list_darsad.get(last_exam.lessons[i].lesson.id ),last_exam.lessons[i].lesson.id );
+                percent_list p = new percent_list();
+                p.exam = last_exam.id;
+                List<percent_id> lessons = new ArrayList<>();
+                for (int i = 0; i < last_exam.lessons.length; i++) {
+                    lessons.add(new percent_id(list_darsad.get(last_exam.lessons[i].lesson.id), last_exam.lessons[i].lesson.id));
                 }
-              String json=new Gson().toJson(percent_lists);
-                System.out.println(json);
-                Intent intent = new Intent(percent.this, taghvim.class);
-                startActivity(intent);
+                p.setLesson(lessons);
+                String les = new Gson().toJson(lessons);
+                System.out.println(les);
+
+                try {
+                    FileInputStream fileInputStream = openFileInput("data.txt");
+                    InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String line;
+                    stringBuffer = new StringBuffer();
+                    while ((line = bufferedReader.readLine()) != null)
+                        stringBuffer.append(line);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String token = stringBuffer.toString();
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                        .build();
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, "{\"lessons\":" + les + ",\"exam\":" + last_exam.id + "}");
+                Request request = new Request.Builder()
+                        .url("http://194.5.207.137:8000/api/v1/users/main/last_exam/")
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Authorization", "token " + token)
+                        .method("POST", body)
+                        .build();
+
+                System.out.println("{\"lessons\":" + les + ",\"exam\":" + last_exam.id + "}");
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        System.out.println("fail");
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        System.out.println(response.body().string());
+                        System.out.println(response.message());
+                        Intent intent = new Intent(percent.this, taghvim.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
