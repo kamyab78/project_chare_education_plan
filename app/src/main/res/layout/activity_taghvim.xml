@@ -13,4 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="477dp"
         android:translationY="70dp" />
+
+    <Button
+        android:id="@+id/virayesh"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:translationY="550dp"
+        android:layout_height="wrap_content"
+        android:text="ویرایش نهایی" />
 </RelativeLayout>

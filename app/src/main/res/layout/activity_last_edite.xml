@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#76b852"
+    tools:context=".activity.last_edite">
+    <Button
+        android:id="@+id/delet"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="حذف زمان موزد نظر"
+        android:translationX="70dp"
+        android:translationY="490dp" />
+
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="154dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:hint="آیدی زمان مورد نظر"
+        android:translationX="70dp"
+        android:translationY="560dp" />
+    <Button
+        android:id="@+id/plan"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="دریافت برنامه"
+        android:translationX="230dp"
+        android:translationY="490dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="439dp">
+
+        <TextView
+            android:id="@+id/show_times"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:text="" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:translationY="460dp"
+        android:text="" />
+
+
+</RelativeLayout>

@@ -21,6 +21,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,6 +40,8 @@ public class first_page extends AppCompatActivity {
     StringBuffer stringBuffer;
     long backprestime;
     public static exam[] exams;
+    public  static HashMap<String, List<String>> show_time=new HashMap<>();
+    public static List<String> time = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

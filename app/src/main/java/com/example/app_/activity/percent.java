@@ -116,7 +116,7 @@ public class percent extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         System.out.println(response.body().string());
                         System.out.println(response.message());
-                        Intent intent = new Intent(percent.this, time_picker.class);
+                        Intent intent = new Intent(percent.this, taghvim.class);
                         startActivity(intent);
                     }
                 });

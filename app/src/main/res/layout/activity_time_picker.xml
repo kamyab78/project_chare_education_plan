@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#76b852"
     android:layout_height="match_parent"
     tools:context=".activity.time_picker">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="720dp">
+    <TextView
+        android:id="@+id/time_txt"
+        android:layout_width="101dp"
+        android:layout_height="420dp"
+        android:layout_centerHorizontal="true"
+        android:translationY="50dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/new_cal"
+        android:translationY="490dp"
+        android:translationX="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="اضافه کردن تاریخ جدید" />
+
+
+    <TextView
+        android:id="@+id/tarikh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/new_saat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationY="560dp"
+        android:translationX="70dp"
+        android:text="اضافه کردن ساعت جدید" />
 
 </RelativeLayout>
+</ScrollView>
