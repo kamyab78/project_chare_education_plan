@@ -46,18 +46,9 @@ public class first_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
-        head = findViewById(R.id.head);
+
         new_program = findViewById(R.id.new_program);
         history = findViewById(R.id.history);
-        prof = findViewById(R.id.prof);
-      //  head.setText("سلام " + login.user_name);
-        prof.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(first_page.this, reshte.class);
-                startActivity(intent);
-            }
-        });
         new_program.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -4,18 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.Spinner;
 
 import com.example.app_.R;
-import com.example.app_.entity.percent_id;
-import com.example.app_.entity.percent_list;
-import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -34,52 +29,42 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static android.graphics.Color.rgb;
-
-public class percent extends AppCompatActivity {
-    RelativeLayout layout;
-    EditText editText;
-    Button darsad;
-    HashMap<String, EditText> percent = new HashMap<>();
-    HashMap<Integer, String> list_darsad = new HashMap<>();
+public class patern extends AppCompatActivity {
+Spinner pattern;
+List<String>patt_name=new ArrayList<>();
+HashMap<String ,Integer>name_id =new HashMap<>();
+String patterns;
     StringBuffer stringBuffer;
-    public List<percent_list> percent_lists;
-
+Button submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_percent);
-        layout = findViewById(R.id.layout);
-        darsad = findViewById(R.id.darsad);
-        for (int i = 0; i < last_exam.lessons.length; i++) {
-            editText = new EditText(this);
-            editText.setTag(last_exam.lessons[i].lesson.name);
-            editText.setHeight(150);
-            editText.setWidth(500);
-            editText.setBackgroundColor(rgb(255,250,250));
-            editText.setTranslationX(300);
-            editText.setTranslationY(300 + 150 * i);
-            editText.setHint(last_exam.lessons[i].lesson.name);
-            layout.addView(editText);
-            percent.put(last_exam.lessons[i].lesson.name, editText);
+        setContentView(R.layout.activity_patern);
+        pattern=findViewById(R.id.spin_patern);
+        submit=findViewById(R.id.submit);
+        for (int i = 0; i <last_edite.patts.length ; i++) {
+            patt_name.add(last_edite.patts[i].name);
+            name_id.put(last_edite.patts[i].name , last_edite.patts[i].id);
         }
-        darsad.setOnClickListener(new View.OnClickListener() {
+        ArrayAdapter<String> item_exam = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, patt_name);
+        item_exam.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        pattern.setAdapter(item_exam);
+        pattern.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                patterns = adapterView.getItemAtPosition(i).toString();
+                System.out.println(name_id.get(patterns));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < last_exam.lessons.length; i++) {
-                    EditText edit = percent.get(last_exam.lessons[i].lesson.name);
-                    list_darsad.put(last_exam.lessons[i].lesson.id, edit.getText().toString());
-                    System.out.println(edit.getText().toString());
-                }
-                percent_list p = new percent_list();
-                p.exam = last_exam.id;
-                List<percent_id> lessons = new ArrayList<>();
-                for (int i = 0; i < last_exam.lessons.length; i++) {
-                    lessons.add(new percent_id(list_darsad.get(last_exam.lessons[i].lesson.id), last_exam.lessons[i].lesson.id));
-                }
-                p.setLesson(lessons);
-                String les = new Gson().toJson(lessons);
-                System.out.println(les);
 
                 try {
                     FileInputStream fileInputStream = openFileInput("data.txt");
@@ -98,15 +83,18 @@ public class percent extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient().newBuilder()
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType, "{\"lessons\":" + les + ",\"exam\":" + last_exam.id + "}");
+                RequestBody body = RequestBody.create(mediaType, "{\n" +
+                        "  \"pattern\": "+name_id.get(patterns)+",\n" +
+                        "  \"for_exam\": 0\n" +
+                        "}");
                 Request request = new Request.Builder()
-                        .url("http://194.5.207.137:8000/api/v1/users/main/last_exam/")
+                        .url("http://194.5.207.137:8000/api/v1/plans/patterns/")
                         .addHeader("Content-Type", "application/json")
                         .addHeader("Authorization", "token " + token)
                         .method("POST", body)
                         .build();
 
-                System.out.println("{\"lessons\":" + les + ",\"exam\":" + last_exam.id + "}");
+
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -119,8 +107,6 @@ public class percent extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         System.out.println(response.body().string());
                         System.out.println(response.message());
-                        Intent intent = new Intent(percent.this, taghvim.class);
-                        startActivity(intent);
                     }
                 });
             }

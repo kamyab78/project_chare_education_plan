@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#76b852"
+    android:background="@drawable/logiinback"
     tools:context=".activity.sabt_nam">
 
 <RelativeLayout
@@ -15,6 +15,8 @@
         android:layout_width="349dp"
         android:layout_height="564dp"
         android:translationX="37dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:translationY="50dp"
         app:srcCompat="@drawable/second" />
 
@@ -24,7 +26,8 @@
         android:layout_height="49dp"
         android:background="#f2f2f2"
         android:ems="10"
-        android:gravity="right"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:hint="نام"
         android:inputType="textPersonName"
         android:translationX="55dp"
@@ -39,7 +42,8 @@
         android:translationX="55dp"
         android:translationY="210dp"
         android:ems="10"
-        android:gravity="right"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:hint="نام خانوادگی" />
 
@@ -52,7 +56,8 @@
         android:translationX="55dp"
         android:translationY="280dp"
         android:ems="10"
-        android:gravity="right"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:hint="ایمیل" />
     <EditText
@@ -63,7 +68,8 @@
         android:translationX="55dp"
         android:translationY="350dp"
         android:ems="10"
-        android:gravity="right"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:hint="نام کاربری" />
     <EditText
@@ -74,7 +80,8 @@
         android:translationX="55dp"
         android:translationY="420dp"
         android:ems="10"
-        android:gravity="right"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:hint="رمز عبور" />
     <Button
@@ -83,7 +90,9 @@
         android:layout_height="wrap_content"
         android:text="تایید"
         android:translationX="90dp"
-        android:background="#43A047"
+        android:background="#11539d"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:translationY="490dp" />
 
     <TextView
@@ -91,6 +100,8 @@
         android:layout_width="255dp"
         android:layout_height="45dp"
         android:translationX="90dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:translationY="600dp"
         android:text="" />
 </RelativeLayout>

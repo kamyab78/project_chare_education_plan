@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#76b852"
+    android:background="#5ec3d5"
     tools:context=".activity.reshte">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
             android:id="@+id/spin_reshte"
             android:translationX="20dp"
             android:textAlignment="gravity"
-            android:gravity="right"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
+            android:gravity="center"
 
             android:translationY="250dp"
             android:prompt="@string/spin_reshte"
@@ -31,6 +31,9 @@
             android:layout_height="wrap_content"
             android:translationX="160dp"
             android:translationY="350dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#3277ba"
             android:text="تایید" />
     </RelativeLayout>
 

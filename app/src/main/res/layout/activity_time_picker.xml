@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#76b852"
+    android:background="@drawable/calback"
     android:layout_height="match_parent"
     tools:context=".activity.time_picker">
 <RelativeLayout
@@ -23,6 +23,7 @@
         android:translationX="70dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#3277ba"
         android:text="اضافه کردن تاریخ جدید" />
 
 
@@ -40,6 +41,7 @@
         android:layout_height="wrap_content"
         android:translationY="560dp"
         android:translationX="70dp"
+        android:background="#3277ba"
         android:text="اضافه کردن ساعت جدید" />
 
 </RelativeLayout>

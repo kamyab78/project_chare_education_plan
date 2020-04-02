@@ -113,7 +113,7 @@ Button accept;
                                     String body=response.body().string();
                                     System.out.println(body);
                                     fileds = new Gson().fromJson(body, filed[].class);
-                                    System.out.println(fileds[1].name);
+                                   // System.out.println(fileds[1].name);
                                     Intent intent=new Intent(sabt_nam.this , reshte.class);
                                     startActivity(intent);
                                 }

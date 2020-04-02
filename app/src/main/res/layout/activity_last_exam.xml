@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#76b852"
+    android:background="@drawable/backpro"
     tools:context=".activity.last_exam">
 <Spinner
 android:layout_width="368dp"
@@ -12,8 +12,9 @@ android:layout_height="64dp"
 android:id="@+id/spin_azmon"
 android:translationX="20dp"
 android:textAlignment="gravity"
-android:gravity="right"
-android:layout_gravity="right"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#FFFAFA"
 android:translationY="250dp"
 android:prompt="@string/spin_azmon">
 
@@ -25,6 +26,9 @@ android:prompt="@string/spin_azmon">
         android:layout_height="wrap_content"
         android:translationX="320dp"
         android:translationY="250dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#FFFAFA"
         android:text="آخرین آزمون" />
 
     <Button
@@ -33,5 +37,8 @@ android:prompt="@string/spin_azmon">
         android:layout_height="wrap_content"
         android:translationX="180dp"
         android:translationY="560dp"
+        android:background="#3277ba"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="مرحله بعدی" />
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.app_.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app_.R;
+import com.example.app_.entity.exam;
+import com.example.app_.entity.patt;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -32,6 +36,7 @@ public class last_edite extends AppCompatActivity {
     StringBuffer stringBuffer;
     TextView show ;
     TextView toast;
+    public static patt[]patts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +48,53 @@ public class last_edite extends AppCompatActivity {
         for (int i = 0; i <first_page.time.size() ; i++) {
             show.append(first_page.time.get(i)+"\n");
         }
-
+plan.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        try {
+            FileInputStream fileInputStream=openFileInput("data.txt");
+            InputStreamReader inputStreamReader=new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+            String line;
+            stringBuffer=new StringBuffer();
+            while ((line=bufferedReader.readLine())!=null)
+                stringBuffer.append(line);
+        } catch (
+                FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String token=stringBuffer.toString();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("application/json");
+        Request request = new Request.Builder()
+                .url("http://194.5.207.137:8000/api/v1/plans/patterns/")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "token "+token)
+                .build();
+        System.out.println(request.headers());
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("fail");
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+String body=response.body().string();
+                System.out.println(response.message());
+                System.out.println(body);
+                patts=new Gson().fromJson(body,patt[].class);
+                Intent intent=new Intent(last_edite.this,patern.class);
+                startActivity(intent);
+                //System.out.println(patts[0].name);
+            }
+        });
+    }
+});
         delet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

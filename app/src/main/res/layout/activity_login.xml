@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:background="#76b852"
+    android:background='@drawable/backgroundmain'
         android:layout_height="match_parent"
     tools:context=".activity.login">
 
@@ -15,6 +15,7 @@
         <!--android:background="#4CAF50"/>-->
         <RelativeLayout
             android:layout_width="match_parent"
+
             android:layout_height="600dp">
 
             <ImageView
@@ -23,6 +24,8 @@
                 android:layout_height="437dp"
                 android:translationX="30dp"
                 android:translationY="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 app:srcCompat="@drawable/first" />
 
             <EditText
@@ -31,7 +34,8 @@
                 android:layout_height="49dp"
                 android:background="#f2f2f2"
                 android:ems="10"
-                android:gravity="right"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:hint="نام کاربری"
                 android:translationX="45dp"
@@ -44,19 +48,23 @@
                 android:background="#f2f2f2"
                 android:translationX="45dp"
                 android:translationY="290dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:ems="10"
-                android:gravity="right"
+
                 android:inputType="textPersonName"
                 android:hint="رمز عبور" />
 
             <Button
                 android:id="@+id/accept"
                 android:layout_width="237dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="تایید"
                 android:translationX="90dp"
-                android:background="#43A047"
-                android:translationY="360dp" />
+                android:background="#3277ba"
+                android:translationY="360dp"  />
 
             <TextView
                 android:id="@+id/textView2"
@@ -64,6 +72,8 @@
                 android:layout_height="wrap_content"
                 android:translationX="270dp"
                 android:translationY="430dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:text="ثبت نام نکرده اید؟" />
 
 
@@ -71,7 +81,8 @@
                 android:id="@+id/sabt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:translationY="429dp"
                 android:background="@android:color/white"
                 android:translationX="220dp"
@@ -83,5 +94,7 @@
                 android:layout_height="33dp"
                 android:text=""
                 android:translationX="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:translationY="500dp"/></RelativeLayout>
     </ScrollView>
