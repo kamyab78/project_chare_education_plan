@@ -30,21 +30,31 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class patern extends AppCompatActivity {
-Spinner pattern;
-List<String>patt_name=new ArrayList<>();
-HashMap<String ,Integer>name_id =new HashMap<>();
-String patterns;
+    Spinner pattern;
+    List<String> patt_name = new ArrayList<>();
+    HashMap<String, Integer> name_id = new HashMap<>();
+    String patterns;
     StringBuffer stringBuffer;
-Button submit;
+    Button submit;
+    Spinner exam_b;
+    List<String> bexam = new ArrayList<>();
+    HashMap<String, Integer> name_id_exam=new HashMap<>();
+    String exam;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patern);
-        pattern=findViewById(R.id.spin_patern);
-        submit=findViewById(R.id.submit);
-        for (int i = 0; i <last_edite.patts.length ; i++) {
+        pattern = findViewById(R.id.spin_patern);
+        submit = findViewById(R.id.submit);
+        exam_b = findViewById(R.id.spin_exam_b);
+        for (int i = 0; i < last_edite.patts.length; i++) {
             patt_name.add(last_edite.patts[i].name);
-            name_id.put(last_edite.patts[i].name , last_edite.patts[i].id);
+            name_id.put(last_edite.patts[i].name, last_edite.patts[i].id);
+        }
+        for (int i = 0; i < last_edite.exam_badis.length; i++) {
+            bexam.add(last_edite.exam_badis[i].name);
+            name_id_exam.put(last_edite.exam_badis[i].name, last_edite.exam_badis[i].id);
         }
         ArrayAdapter<String> item_exam = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, patt_name);
         item_exam.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -53,8 +63,24 @@ Button submit;
         pattern.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                exam = adapterView.getItemAtPosition(i).toString();
+                System.out.println(name_id.get(exam));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> item_exam_ = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, bexam);
+        item_exam.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        exam_b.setAdapter(item_exam_);
+        exam_b.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 patterns = adapterView.getItemAtPosition(i).toString();
-                System.out.println(name_id.get(patterns));
+                System.out.println(name_id_exam.get(patterns));
             }
 
             @Override
@@ -84,8 +110,8 @@ Button submit;
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(mediaType, "{\n" +
-                        "  \"pattern\": "+name_id.get(patterns)+",\n" +
-                        "  \"for_exam\": 0\n" +
+                        "  \"pattern\": " + name_id.get(patterns) + ",\n" +
+                        "  \"for_exam\": " + name_id_exam.get(patterns) + "\n" +
                         "}");
                 Request request = new Request.Builder()
                         .url("http://194.5.207.137:8000/api/v1/plans/patterns/")
