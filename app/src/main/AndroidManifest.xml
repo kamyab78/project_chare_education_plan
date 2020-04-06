@@ -22,8 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.patern"/>
-
+        <activity android:name=".activity.plan"></activity>
+        <activity android:name=".activity.next_exam" />
+        <activity android:name=".activity.patern" />
+        <activity android:name=".activity.last_edite" />
         <activity android:name=".activity.time_picker" />
         <activity android:name=".activity.taghvim" />
         <activity android:name=".activity.percent" />
@@ -32,8 +34,7 @@
         <activity android:name=".activity.reshte" />
         <activity android:name=".activity.first_page" />
         <activity android:name=".activity.sabt_nam" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".activity.last_edite" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

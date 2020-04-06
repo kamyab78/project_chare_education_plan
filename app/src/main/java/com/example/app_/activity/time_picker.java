@@ -98,13 +98,27 @@ public class time_picker extends AppCompatActivity {
 
                     if (hourOfDay < 10) {
                         if (minute < 10) {
-                            saat = 0 + "" + hourOfDay;
-                            ta = 0 + "" + ta_time;
-                            deighe = 0 + "" + minute;
+                            if(ta_time==24) {
+                                saat = "0" + hourOfDay;
+                                ta = "" + "00";
+                                deighe = 0 + "" + minute;
+                            }
+                            else {
+                                saat = "0" + hourOfDay;
+                                ta = "0" + ta_time;
+                                deighe = 0 + "" + minute;
+                            }
                         } else {
-                            saat = 0 + "" + hourOfDay;
-                            ta = 0 + "" + ta_time;
-                            deighe = "" + minute;
+                            if(ta_time==24) {
+                                saat = "0" + hourOfDay;
+                                ta = "" + "00";
+                                deighe = "" + minute;
+                            }
+                            else {
+                                saat = "0" + hourOfDay;
+                                ta = "0" + ta_time;
+                                deighe = "" + minute;
+                            }
                         }
                     } else {
                         if (minute < 10) {
@@ -155,7 +169,7 @@ public class time_picker extends AppCompatActivity {
                     RequestBody body = RequestBody.create(mediaType, "{\n" +
                             "  \"from_date\": \"" + taghvim.date + "T" + from + ".707Z\",\n" +
                             "  \"to_date\": \"" + taghvim.date + "T" + to + ".707Z\",\n" +
-                            "  \"for_exam\": " + last_exam.id + "\n" +
+                            "  \"for_exam\": " + next_exam.name_id_exam.get(next_exam.exam) + "\n" +
                             "}");
                     Request request = new Request.Builder()
                             .url("http://194.5.207.137:8000/api/v1/users/main/user_budget/")

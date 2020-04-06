@@ -114,9 +114,9 @@ public static String id;
                         System.out.println(res);
                         System.out.println(response.message());
                         lessons = new Gson().fromJson(res, lesson[].class);
-                        System.out.println(lessons[0].lesson);
-                        System.out.println(lessons[0].lesson.toString());
-                        System.out.println(lessons[0].lesson.name);
+//                        System.out.println(lessons[0].lesson);
+//                        System.out.println(lessons[0].lesson.toString());
+//                        System.out.println(lessons[0].lesson.name);
                         Intent intent = new Intent(last_exam.this, percent.class);
                         startActivity(intent);
                     }

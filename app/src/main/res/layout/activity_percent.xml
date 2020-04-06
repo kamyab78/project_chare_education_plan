@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/images"
-    android:id="@+id/layout"
-    tools:context=".activity.percent">
 
+    tools:context=".activity.percent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:id="@+id/layout"
+    android:layout_height="1100dp">
     <Button
         android:id="@+id/darsad"
      android:layout_centerHorizontal="true"
-        android:translationY="600dp"
+        android:translationY="1000dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_width="wrap_content"
@@ -24,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:text="درصد آخرین آزمون خود را وارد کنید" />
-
 </RelativeLayout>
+</ScrollView>

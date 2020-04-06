@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.app_.R;
+import com.example.app_.entity.exam_badi;
 import com.example.app_.entity.percent_id;
 import com.example.app_.entity.percent_list;
 import com.google.gson.Gson;
@@ -44,6 +45,8 @@ public class percent extends AppCompatActivity {
     HashMap<Integer, String> list_darsad = new HashMap<>();
     StringBuffer stringBuffer;
     public List<percent_list> percent_lists;
+    public static exam_badi[]exam_badis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,7 @@ public class percent extends AppCompatActivity {
             editText.setWidth(500);
             editText.setBackgroundColor(rgb(255,250,250));
             editText.setTranslationX(300);
-            editText.setTranslationY(300 + 150 * i);
+            editText.setTranslationY(100 + 150 * i);
             editText.setHint(last_exam.lessons[i].lesson.name);
             layout.addView(editText);
             percent.put(last_exam.lessons[i].lesson.name, editText);
@@ -119,8 +122,49 @@ public class percent extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         System.out.println(response.body().string());
                         System.out.println(response.message());
-                        Intent intent = new Intent(percent.this, taghvim.class);
-                        startActivity(intent);
+                        try {
+                            FileInputStream fileInputStream=openFileInput("data.txt");
+                            InputStreamReader inputStreamReader=new InputStreamReader(fileInputStream);
+                            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                            String line;
+                            stringBuffer=new StringBuffer();
+                            while ((line=bufferedReader.readLine())!=null)
+                                stringBuffer.append(line);
+                        } catch (
+                                FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        String token=stringBuffer.toString();
+                        OkHttpClient client = new OkHttpClient().newBuilder()
+                                .build();
+                        MediaType mediaType = MediaType.parse("application/json");
+                        Request request = new Request.Builder()
+                                .url("http://194.5.207.137:8000/api/v1/core/main/exam/")
+                                .addHeader("Content-Type", "application/json")
+                                .addHeader("Authorization", "token "+token)
+                                .build();
+                        System.out.println(request.headers());
+                        client.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                System.out.println("fail");
+                                System.out.println(e.getMessage());
+                                e.printStackTrace();
+                            }
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String body=response.body().string();
+                                System.out.println(response.message());
+                                System.out.println(body);
+                                exam_badis=new Gson().fromJson(body, exam_badi[].class);
+                                Intent intent = new Intent(percent.this, next_exam.class);
+                                startActivity(intent);
+                                //System.out.println(patts[0].name);
+                            }
+                        });
+
                     }
                 });
             }

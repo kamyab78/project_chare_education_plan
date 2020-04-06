@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.app_.R;
+import com.example.app_.entity.plan_;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -36,10 +38,7 @@ public class patern extends AppCompatActivity {
     String patterns;
     StringBuffer stringBuffer;
     Button submit;
-    Spinner exam_b;
-    List<String> bexam = new ArrayList<>();
-    HashMap<String, Integer> name_id_exam=new HashMap<>();
-    String exam;
+public static plan_ plans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +46,12 @@ public class patern extends AppCompatActivity {
         setContentView(R.layout.activity_patern);
         pattern = findViewById(R.id.spin_patern);
         submit = findViewById(R.id.submit);
-        exam_b = findViewById(R.id.spin_exam_b);
+
         for (int i = 0; i < last_edite.patts.length; i++) {
             patt_name.add(last_edite.patts[i].name);
             name_id.put(last_edite.patts[i].name, last_edite.patts[i].id);
         }
-        for (int i = 0; i < last_edite.exam_badis.length; i++) {
-            bexam.add(last_edite.exam_badis[i].name);
-            name_id_exam.put(last_edite.exam_badis[i].name, last_edite.exam_badis[i].id);
-        }
+
         ArrayAdapter<String> item_exam = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, patt_name);
         item_exam.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
@@ -63,24 +59,8 @@ public class patern extends AppCompatActivity {
         pattern.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                exam = adapterView.getItemAtPosition(i).toString();
-                System.out.println(name_id.get(exam));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        ArrayAdapter<String> item_exam_ = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, bexam);
-        item_exam.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-        exam_b.setAdapter(item_exam_);
-        exam_b.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 patterns = adapterView.getItemAtPosition(i).toString();
-                System.out.println(name_id_exam.get(patterns));
+                System.out.println(name_id.get(patterns));
             }
 
             @Override
@@ -88,6 +68,7 @@ public class patern extends AppCompatActivity {
 
             }
         });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,10 +92,10 @@ public class patern extends AppCompatActivity {
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(mediaType, "{\n" +
                         "  \"pattern\": " + name_id.get(patterns) + ",\n" +
-                        "  \"for_exam\": " + name_id_exam.get(patterns) + "\n" +
+                        "  \"for_exam\": " +next_exam.name_id_exam.get(next_exam.exam) + "\n" +
                         "}");
                 Request request = new Request.Builder()
-                        .url("http://194.5.207.137:8000/api/v1/plans/patterns/")
+                        .url("http://194.5.207.137:8000/api/v1/plans/")
                         .addHeader("Content-Type", "application/json")
                         .addHeader("Authorization", "token " + token)
                         .method("POST", body)
@@ -131,8 +112,13 @@ public class patern extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        System.out.println(response.body().string());
+                        String body=response.body().string();
+                        System.out.println(body);
                         System.out.println(response.message());
+                        plans=new Gson().fromJson(body,plan_.class);
+                        System.out.println(plans.boxes[0].lesson);
+                        Intent intent=new Intent(patern.this,plan.class );
+                        startActivity(intent);
                     }
                 });
             }
