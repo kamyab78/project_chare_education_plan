@@ -45,6 +45,7 @@ public class last_edite extends AppCompatActivity {
         setContentView(R.layout.activity_last_edite);
         plan = findViewById(R.id.plan);
         delet = findViewById(R.id.delet);
+        id_=findViewById(R.id.id);
         show=findViewById(R.id.show_times);
         toast=findViewById(R.id.toast);
         for (int i = 0; i <first_page.time.size() ; i++) {

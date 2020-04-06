@@ -206,6 +206,7 @@ public class time_picker extends AppCompatActivity {
                 }
             }
         };
+
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, myTimeListener, hour, minute, true);
         timePickerDialog.setTitle("Choose hour:");
         timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);

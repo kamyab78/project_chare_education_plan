@@ -78,7 +78,7 @@ public class percent extends AppCompatActivity {
                 p.exam = last_exam.id;
                 List<percent_id> lessons = new ArrayList<>();
                 for (int i = 0; i < last_exam.lessons.length; i++) {
-                    lessons.add(new percent_id(list_darsad.get(last_exam.lessons[i].lesson.id), last_exam.lessons[i].lesson.id));
+                    lessons.add(new percent_id(Integer.parseInt(list_darsad.get(last_exam.lessons[i].lesson.id)), last_exam.lessons[i].lesson.id));
                 }
                 p.setLesson(lessons);
                 String les = new Gson().toJson(lessons);

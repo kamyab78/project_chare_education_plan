@@ -92,7 +92,7 @@ public static plan_ plans;
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(mediaType, "{\n" +
                         "  \"pattern\": " + name_id.get(patterns) + ",\n" +
-                        "  \"for_exam\": " +next_exam.name_id_exam.get(next_exam.exam) + "\n" +
+                        "  \"for_exam\": " + 3 + "\n" +
                         "}");
                 Request request = new Request.Builder()
                         .url("http://194.5.207.137:8000/api/v1/plans/")
@@ -116,7 +116,6 @@ public static plan_ plans;
                         System.out.println(body);
                         System.out.println(response.message());
                         plans=new Gson().fromJson(body,plan_.class);
-                        System.out.println(plans.boxes[0].lesson);
                         Intent intent=new Intent(patern.this,plan.class );
                         startActivity(intent);
                     }

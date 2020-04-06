@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.plan"></activity>
+        <activity android:name=".activity.show_plan"></activity>
+        <activity android:name=".activity.plan" />
         <activity android:name=".activity.next_exam" />
         <activity android:name=".activity.patern" />
         <activity android:name=".activity.last_edite" />
