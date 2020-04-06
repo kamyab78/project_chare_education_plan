@@ -104,9 +104,16 @@ public class time_picker extends AppCompatActivity {
                                 deighe = 0 + "" + minute;
                             }
                             else {
-                                saat = "0" + hourOfDay;
-                                ta = "0" + ta_time;
-                                deighe = 0 + "" + minute;
+                                if(ta_time==10) {
+                                    saat = "0" + hourOfDay;
+                                    ta = "" + ta_time;
+                                    deighe = 0 + "" + minute;
+                                }
+                                else {
+                                    saat = "0" + hourOfDay;
+                                    ta = "0" + ta_time;
+                                    deighe = 0 + "" + minute;
+                                }
                             }
                         } else {
                             if(ta_time==24) {
