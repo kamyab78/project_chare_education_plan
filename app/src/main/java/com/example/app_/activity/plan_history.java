@@ -6,28 +6,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.app_.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class plan extends AppCompatActivity {
-CalendarView calender;
-public static String date;
-public static List<String>zaman;
-TextView id_plan;
+public class plan_history extends AppCompatActivity {
+    CalendarView calender;
+    public static String date;
+    public static List<String> zaman;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan);
-calender=findViewById(R.id.calender);
-id_plan=findViewById(R.id.id_plan);
-id_plan.setText("برنامه ی شماره ی "+patern.plans.id);
-zaman=new ArrayList<>();
-        for (int i = 0; i <patern.plans.boxes.length ; i++) {
-            String []dates=patern.plans.boxes[i].start_time.split("T");
+        setContentView(R.layout.activity_plan_history);
+        calender=findViewById(R.id.calender_history);
+
+        zaman=new ArrayList<>();
+        for (int i = 0; i <get_id_last_plan.get_plan.boxes.length ; i++) {
+            String []dates=get_id_last_plan.get_plan.boxes[i].start_time.split("T");
             zaman.add(dates[0]);
         }
         calender.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -52,28 +50,11 @@ zaman=new ArrayList<>();
 
                 }
                 System.out.println(date);
-                Intent intent=new Intent(plan.this,show_plan.class);
+                Intent intent=new Intent(plan_history.this,show_plan_history.class);
                 startActivity(intent);
 
             }
         });
 
-    }
-    int backButtonCount=0;
-    @Override
-    public void onBackPressed()
-    {
-        if(backButtonCount >= 1)
-        {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-        else
-        {
-            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
-            backButtonCount++;
-        }
     }
 }

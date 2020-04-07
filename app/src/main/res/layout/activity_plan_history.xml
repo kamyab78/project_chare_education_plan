@@ -5,20 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#008000"
-    tools:context=".activity.plan">
-
+    tools:context=".activity.plan_history">
     <CalendarView
-        android:id="@+id/calender"
+        android:id="@+id/calender_history"
         android:layout_width="match_parent"
         android:layout_height="477dp"
         android:translationY="70dp" />
-
-    <TextView
-        android:id="@+id/id_plan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-
-        android:text="" />
-
 </RelativeLayout>

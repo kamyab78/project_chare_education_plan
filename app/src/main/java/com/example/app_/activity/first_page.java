@@ -49,6 +49,13 @@ public class first_page extends AppCompatActivity {
 
         new_program = findViewById(R.id.new_program);
         history = findViewById(R.id.history);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(first_page.this,get_id_last_plan.class);
+                startActivity(intent);
+            }
+        });
         new_program.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

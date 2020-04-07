@@ -102,7 +102,7 @@ public class time_picker extends AppCompatActivity {
                                 deighe = 0 + "" + minute;
                             }
                             else {
-                                if(ta_time==10) {
+                                if(hourOfDay==9) {
                                     saat = "0" + hourOfDay;
                                     ta = "" + ta_time;
                                     deighe = 0 + "" + minute;
@@ -117,12 +117,19 @@ public class time_picker extends AppCompatActivity {
                             if(ta_time==24) {
                                 saat = "0" + hourOfDay;
                                 ta = "" + "00";
-                                deighe = "" + minute;
+                                deighe =  "" + minute;
                             }
                             else {
-                                saat = "0" + hourOfDay;
-                                ta = "0" + ta_time;
-                                deighe = "" + minute;
+                                if(hourOfDay==9) {
+                                    saat = "0" + hourOfDay;
+                                    ta = "" + ta_time;
+                                    deighe = "" + minute;
+                                }
+                                else {
+                                    saat = "0" + hourOfDay;
+                                    ta = "0" + ta_time;
+                                    deighe =   "" + minute;
+                                }
                             }
                         }
                     } else {
