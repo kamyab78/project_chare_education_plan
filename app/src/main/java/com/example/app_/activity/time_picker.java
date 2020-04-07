@@ -36,9 +36,7 @@ import okhttp3.Response;
 public class time_picker extends AppCompatActivity {
     Button new_saat;
     Button new_cal;
-
     TextView time_txt;
-
     TextView tarikh;
     StringBuffer stringBuffer;
     String from;
@@ -188,7 +186,7 @@ public class time_picker extends AppCompatActivity {
                     System.out.println("{\n" +
                             "  \"from_date\": \"" + taghvim.date + "T" + from + ".707Z\",\n" +
                             "  \"to_date\": \"" + taghvim.date + "T" + to + ".707Z\",\n" +
-                            "  \"for_exam\": " + last_exam.id + "\n" +
+                            "  \"for_exam\": " + next_exam.name_id_exam.get(next_exam.exam) + "\n" +
                             "}");
                     client.newCall(request).enqueue(new Callback() {
                         @Override

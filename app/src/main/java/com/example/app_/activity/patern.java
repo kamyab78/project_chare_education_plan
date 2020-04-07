@@ -92,7 +92,7 @@ public static plan_ plans;
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(mediaType, "{\n" +
                         "  \"pattern\": " + name_id.get(patterns) + ",\n" +
-                        "  \"for_exam\": " + 3 + "\n" +
+                        "  \"for_exam\": " + next_exam.name_id_exam.get(next_exam.exam) + "\n" +
                         "}");
                 Request request = new Request.Builder()
                         .url("http://194.5.207.137:8000/api/v1/plans/")
