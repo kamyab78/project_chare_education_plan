@@ -6,4 +6,5 @@ public class plan_body {
     public String lesson;
     public String topic;
     public String type;
+    public int id;
 }

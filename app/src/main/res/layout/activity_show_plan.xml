@@ -18,5 +18,11 @@
         android:text=""
         android:textSize="20dp"
         android:translationY="10dp" />
+
+    <Button
+        android:id="@+id/taghir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ویرایش" />
 </RelativeLayout>
 </ScrollView>

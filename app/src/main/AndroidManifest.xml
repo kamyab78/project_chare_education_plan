@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.show_plan_history"></activity>
+        <activity android:name=".activity.taghir"></activity>
+        <activity android:name=".activity.show_plan_history" />
         <activity android:name=".activity.plan_history" />
         <activity android:name=".activity.get_id_last_plan" />
         <activity android:name=".activity.show_plan" />

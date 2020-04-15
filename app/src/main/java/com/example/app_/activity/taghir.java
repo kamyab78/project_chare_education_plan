@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.EditText;
 
 import com.example.app_.R;
 import com.example.app_.entity.plan_;
@@ -19,9 +17,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -31,48 +26,21 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class patern extends AppCompatActivity {
-    Spinner pattern;
-    List<String> patt_name = new ArrayList<>();
-    HashMap<String, Integer> name_id = new HashMap<>();
-    String patterns;
+public class taghir extends AppCompatActivity {
+Button finish;
+EditText box1;
     StringBuffer stringBuffer;
-    Button submit;
-public static plan_ plans;
-
+        EditText box2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patern);
-        pattern = findViewById(R.id.spin_patern);
-        submit = findViewById(R.id.submit);
-
-        for (int i = 0; i < last_edite.patts.length; i++) {
-            patt_name.add(last_edite.patts[i].name);
-            name_id.put(last_edite.patts[i].name, last_edite.patts[i].id);
-        }
-
-        ArrayAdapter<String> item_exam = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, patt_name);
-        item_exam.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-        pattern.setAdapter(item_exam);
-        pattern.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                patterns = adapterView.getItemAtPosition(i).toString();
-                System.out.println(name_id.get(patterns));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        submit.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_taghir);
+        finish=findViewById(R.id.finish);
+        box1=findViewById(R.id.box1);
+        box2=findViewById(R.id.box2);
+        finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 try {
                     FileInputStream fileInputStream = openFileInput("data.txt");
                     InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -90,12 +58,9 @@ public static plan_ plans;
                 OkHttpClient client = new OkHttpClient().newBuilder()
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType, "{\n" +
-                        "  \"pattern\": " + name_id.get(patterns) + ",\n" +
-                        "  \"for_exam\": " + next_exam.name_id_exam.get(next_exam.exam) + "\n" +
-                        "}");
+                RequestBody body = RequestBody.create(mediaType, "\"box1\": "+Integer.parseInt(box1.getText().toString())+", \"box2\": "+Integer.parseInt(box2.getText().toString())+"");
                 Request request = new Request.Builder()
-                        .url("http://194.5.207.137:8000/api/v1/plans/")
+                        .url("http://194.5.207.137:8000/api/v1/plans/swap/")
                         .addHeader("Content-Type", "application/json")
                         .addHeader("Authorization", "token " + token)
                         .method("POST", body)
@@ -115,10 +80,8 @@ public static plan_ plans;
                         String body=response.body().string();
                         System.out.println(body);
                         System.out.println(response.message());
-                        plans=new Gson().fromJson(body,plan_.class);
-                        System.out.println(plans.boxes[0].id);
-                        Intent intent=new Intent(patern.this,plan.class );
-                        startActivity(intent);
+                Intent intent=new Intent(taghir.this,patern.class);
+                startActivity(intent);
                     }
                 });
             }
